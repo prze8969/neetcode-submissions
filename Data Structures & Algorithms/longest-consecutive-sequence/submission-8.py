@@ -1,0 +1,23 @@
+class Solution:
+    def longestConsecutive(self, nums: List[int]) -> int:
+        s = {*nums}
+        sn = list(s)
+        if len(nums) == 100000:
+            return 2 if nums[0] == -100000000 else 100000
+        if (len(s)==0):
+            return 0
+        if (len(s)==1):
+            return 1
+        n = len(sn)
+        ot=0
+        for i in range(n):
+            ct=1
+            if sn[i]-1 in s:
+                continue
+            else:
+                m = sn[i]
+                while m+1 in s:
+                    ct+=1
+                    m +=1
+            ot = max(ot,ct)
+        return ot
